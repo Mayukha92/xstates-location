@@ -100,7 +100,7 @@ function App() {
         <option value="">Select City</option>
         {citiesData.map((ele,idx) => (<option key={idx} value={ele}>{ele}</option>))}
       </select>
-      {countryValue&&stateValue&&cityValue &&(<h1>You selected{cityValue}, {stateValue} and {countryValue}</h1>) }
+      {countryValue&&stateValue&&cityValue &&(<h1>You selected {cityValue}, {stateValue} and {countryValue}</h1>) }
     </div>
   );
 }
