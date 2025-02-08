@@ -12,17 +12,31 @@ function App() {
   const [stateValue, setStateValue] = useState("");  // holds selected state value
   const [cityValue, setCityValue] = useState("");   // holds selected city value
   
-  const fetchCountries = async() => {
+  // const fetchCountries = async() => {
+  //   try {
+  //     const response = await fetch("https://crio-location-selector.onrender.com/countries");
+  //     const result = await response.json();
+  //     setCountriesData(result);
+  //   } catch (error) {
+  //     console.error("Error Fetching Countries Data: ",error);
+  //   }
+    
+  // }
+ 
+
+  const fetchCountries = async () => {
     try {
       const response = await fetch("https://crio-location-selector.onrender.com/countries");
+      if (!response.ok) {
+        throw new Error("Failed to fetch countries");
+      }
       const result = await response.json();
       setCountriesData(result);
     } catch (error) {
-      console.error("Error Fetching Countries Data: ",error);
+      console.error("Error Fetching Countries Data: ", error);
+      setCountriesData([]); // Ensure dropdown remains empty if API fails
     }
-    
-  }
- 
+  };
   
   const fetchStates = async(country) =>{
     try {
@@ -101,7 +115,9 @@ function App() {
         {citiesData.map((ele,idx) => (<option key={idx} value={ele}>{ele}</option>))}
       </select>
       {/* {countryValue && stateValue && cityValue &&(<h3>You selected <span style={{fontSize: "26px"}}>{cityValue}, </span><span style={{color:"grey"}}>{stateValue} and {countryValue}</span></h3>) } */}
-      {countryValue&&stateValue&&cityValue &&(<h3>You selected {cityValue}, {stateValue} and {countryValue}</h3>) } 
+      {countryValue && stateValue && cityValue && (
+  <h3>You selected {cityValue}, {stateValue}, {countryValue}</h3>
+)}  
     </div>
   );
 }
