@@ -87,20 +87,21 @@ function App() {
       <h1>Select Location</h1>
       
       <select value={countryValue} onChange={handleCountry}>
-        <option value="">Select Country</option>
+        <option value="" disabled>Select Country</option>
         {countriesData.map((ele,idx) => (<option key={idx} value={ele}>{ele}</option>))}
       </select>
       
       <select value={stateValue} onChange={handleStates} disabled ={!countryValue} >
-        <option value ="">Select State</option>
+        <option value ="" disabled>Select State</option>
         {statesData.map((ele,idx) =>(<option key ={idx} value={ele}>{ele}</option>))}
       </select>
       
       <select value={cityValue} onChange={handleCities} disabled ={!stateValue}>
-        <option value="">Select City</option>
+        <option value="" disabled>Select City</option>
         {citiesData.map((ele,idx) => (<option key={idx} value={ele}>{ele}</option>))}
       </select>
-      {countryValue&&stateValue&&cityValue &&(<h1>You selected {cityValue}, {stateValue} and {countryValue}</h1>) }
+      {/* {countryValue && stateValue && cityValue &&(<h3>You selected <span style={{fontSize: "26px"}}>{cityValue}, </span><span style={{color:"grey"}}>{stateValue} and {countryValue}</span></h3>) } */}
+      {countryValue&&stateValue&&cityValue &&(<h3>You selected {cityValue}, {stateValue} and {countryValue}</h3>) } 
     </div>
   );
 }
